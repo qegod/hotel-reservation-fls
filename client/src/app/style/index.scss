@@ -1,0 +1,23 @@
+@use './theme/dark.scss';
+@use './theme/light.scss';
+
+:root {
+  --navbar-height: 40px;
+  --navbar-margin: 10px;
+}
+body {
+  background-color: var(--background-color);
+  color: var(--main-color);
+}
+
+.app {
+  min-height: 100vh;
+  padding: 10px;
+
+}
+
+.page-content {
+  padding: 10px;
+  min-width: 100vh;
+  height: calc(100vh - var(--navbar-height) - 20px);
+}

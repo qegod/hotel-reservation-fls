@@ -1,9 +1,17 @@
-import {Column, DataType, Model, Table} from "sequelize-typescript";
+import {BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table} from "sequelize-typescript";
+import {Company} from "./companies.model";
+import {HotelImage} from "./hotel-image.model";
 
 interface CreateHotelAttrs {
     name: string;
-    email: string;
-    price: string;
+    price: number;
+    company_id: number;
+    data: HotelData;
+}
+
+interface HotelData {
+    title: string;
+    description: string;
 }
 
 @Table({tableName: "hotels"})
@@ -17,12 +25,24 @@ export class Hotel extends Model<Hotel, CreateHotelAttrs>{
     @Column({type: DataType.INTEGER, allowNull: false})
     price: number;
 
-    @Column({type: DataType.BOOLEAN(), allowNull: false, defaultValue: false})
-    is_booked: boolean;
+    @Column({type: DataType.JSONB, allowNull: false, defaultValue: {}})
+    data: HotelData;
 
-    @Column({type: DataType.STRING, allowNull: true})
-    description: string;
+    @ForeignKey(() => Company)
+    @Column({type: DataType.INTEGER, allowNull: false})
+    company_id: number;
 
-    @Column({type: DataType.ARRAY(DataType.STRING), defaultValue: [], allowNull: false})
-    image: string[];
+    @BelongsTo(() => Company, {
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE'
+    })
+    company: Company
+
+    @HasMany(() => HotelImage, {
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
+    })
+    images: HotelImage[];
+
 }
+

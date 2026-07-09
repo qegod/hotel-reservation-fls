@@ -1,0 +1,41 @@
+.AuthForm {
+  background-color: var(--inverted-background-color);
+  width: 500px;
+  height: 60vh;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgba(69, 69, 69, 0.15);
+  padding: 10px;
+  position: relative;
+
+}
+
+.Loading {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+
+
+.formValues {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.changeButton {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
