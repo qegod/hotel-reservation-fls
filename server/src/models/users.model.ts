@@ -1,7 +1,8 @@
-import {BelongsToMany, Model} from "sequelize-typescript";
+import {BelongsTo, BelongsToMany, HasOne, Model} from "sequelize-typescript";
 import {Column, DataType, Table} from "sequelize-typescript";
 import {Role} from "./roles.model";
 import {UserRoles} from "./user-roles.model";
+import {Company} from "./companies.model";
 
 interface CreateUserAttrs {
     username: string;
@@ -28,4 +29,8 @@ export class User extends Model<User, CreateUserAttrs> {
 
     @BelongsToMany(() => Role, () => UserRoles)
     roles: Role[];
+
+
+    @HasOne(() => Company)
+    company: Company;
 }

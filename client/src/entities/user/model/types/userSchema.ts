@@ -5,4 +5,5 @@ export interface UserSchema {
 export interface User {
     id: number
     username: string
+    company_id?: number
 }

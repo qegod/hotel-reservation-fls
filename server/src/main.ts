@@ -7,7 +7,10 @@ const startServer = async () => {
     const app = await NestFactory.create(AppModule);
 
     app.enableCors({
-        origin: 'http://localhost:5173', // URL вашего фронта
+        origin: [
+            'http://localhost:5173',
+            'http://172.18.0.1:5173',
+        ], // URL вашего фронта
         credentials: true,
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
         allowedHeaders: [

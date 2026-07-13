@@ -10,3 +10,7 @@ export {
 export {
     getUserName
 } from './model/selectors/getUserName/getUserName'
+
+export {
+    getCompanyId
+} from './model/selectors/getCompanyId/getCompanyId'

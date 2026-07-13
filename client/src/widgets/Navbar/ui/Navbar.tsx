@@ -3,11 +3,11 @@ import ThemeSwitcher from "../../../shared/ui/ThemeSwitcher/ThemeSwitcher.tsx";
 import cls from './Navbar.module.scss'
 import {NavbarItems} from "./NavbarItems/NavbarItems.tsx";
 import {useSelector} from "react-redux";
-import {getUserName, userActions} from "../../../entities/user";
+import {getUserName, userActions} from "@/entities/user";
 import Button, {ButtonTheme} from "../../../shared/ui/Button/Button.tsx";
 import {memo, useCallback} from "react";
-import {useAppDispatch} from "../../../app/providers/StoreProvider/store/store.ts";
-import {LOCAL_STORAGE_TOKEN} from "../../../shared/config/api/baseApi.ts";
+import {LOCAL_STORAGE_TOKEN} from "@/shared/config/api/baseApi.ts";
+import {useAppDispatch} from "@/app/providers/StoreProvider";
 
 interface NavbarProps {
     className?: string;

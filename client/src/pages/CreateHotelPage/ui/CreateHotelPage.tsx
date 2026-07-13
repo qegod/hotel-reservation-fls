@@ -15,10 +15,12 @@ import {CreateHotelForm} from "./createHotelForm/CreateHotelForm.tsx";
 import Loader from "../../../shared/ui/Loader/Loader.tsx";
 import {classNames} from "../../../shared/lib/classNames/classNames.ts";
 import {useNavigate} from "react-router";
+import {getCompanyId} from "@/entities/user";
 
 const CreateHotelPage = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const company = useSelector(getCompanyId);
 
     const valueName = useSelector(getCreateHotelName)
     const valueDescription = useSelector(getCreateHotelDescription)
@@ -48,7 +50,7 @@ const CreateHotelPage = () => {
         dispatch(createHotelActions.setPrice(Number(value)))
     }, [dispatch])
 
-    const  onSubmit = useCallback( async () => {
+    const onSubmit = useCallback( async () => {
         await dispatch(createHotelThunk({
             name: valueName,
             description: valueDescription,
@@ -74,6 +76,13 @@ const CreateHotelPage = () => {
         )
     }
 
+    if(!company) {
+        return (
+            <div className={classNames(cls.CreateHotelPage, [cls.notAccess])}>
+                <h3>You don't have access</h3>
+            </div>
+        )
+    }
 
     return (
         <div className={cls.CreateHotelPage}>

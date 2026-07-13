@@ -2,5 +2,6 @@
 export {
     store,
     type AppDispatch,
-    type RootState
+    type RootState,
+    useAppDispatch,
 } from './store/store.ts'

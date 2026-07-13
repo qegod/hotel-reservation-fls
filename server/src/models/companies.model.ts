@@ -1,8 +1,10 @@
-import {Column, DataType, HasMany, Model, Table} from "sequelize-typescript";
+import {BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table} from "sequelize-typescript";
 import {Hotel} from "./hotels.model";
+import {User} from "./users.model";
 
 interface CreateCompanyAttrs {
     name: string;
+    user_id: number;
 }
 
 @Table({tableName: 'companies'})
@@ -18,4 +20,14 @@ export class Company extends Model<Company, CreateCompanyAttrs> {
         onUpdate: "CASCADE",
     })
     hotels: Hotel[];
+
+    @Column({type: DataType.INTEGER, allowNull: false})
+    @ForeignKey(() => User)
+    user_id: number;
+
+    @BelongsTo(() => User, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
+    user: User;
 }

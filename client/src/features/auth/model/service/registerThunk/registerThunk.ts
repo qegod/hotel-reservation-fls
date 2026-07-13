@@ -16,8 +16,17 @@ export const registerUserThunk = createAsyncThunk('user/register',
             const token = await api.post('/auth/register', data)
             localStorage.setItem(LOCAL_STORAGE_TOKEN, token.data)
 
-            const response = await api.get('/auth/user')
-            const user = {id: response.data.id, username: response.data.username}
+            const response = await api.get<{id, username, company: {id: string}}>('/auth/user')
+
+            const user = {
+                id: response.data.id,
+                username: response.data.username,
+                company_id: null
+            }
+
+            if(response.data.company) {
+                user.company_id = response.data.company.id
+            }
 
             dispatch(userActions.setUser(user))
             return user

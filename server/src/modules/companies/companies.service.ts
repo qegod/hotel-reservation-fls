@@ -1,20 +1,31 @@
-import {ConflictException, Injectable} from "@nestjs/common";
+import {ConflictException, Injectable, NotFoundException} from "@nestjs/common";
 import {InjectModel} from "@nestjs/sequelize";
 import {Company} from "../../models";
 import {CreateCompanyDto} from "./dto/create-company.dto";
+import {UsersService} from "../users/users.service";
 
 
 @Injectable()
 export class CompaniesService {
-    constructor(@InjectModel(Company) private companyProvider: typeof Company) {}
+    constructor(@InjectModel(Company) private companyProvider: typeof Company,
+                private usersService: UsersService,
+                ) {}
 
-    async create(dto: CreateCompanyDto) {
+    async create(dto: CreateCompanyDto, userId: number) {
         const candidate = await this.companyProvider.findOne({where: {name: dto.name}})
         if (candidate) {
             throw new ConflictException("Компания с таким название уже существует")
         }
 
-        return await this.companyProvider.create(dto)
+        const user = await this.usersService.findById(userId)
+        if (!user) {
+            throw new NotFoundException("Пользователь не найден")
+        }
+
+        return await this.companyProvider.create({
+            ...dto,
+            user_id: userId,
+        })
     }
 
     async findById(companyId: number) {

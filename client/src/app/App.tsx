@@ -1,10 +1,10 @@
 import './style/index.scss'
-import AppRoutes from "./providers/route/route.tsx";
-import Navbar from "../widgets/Navbar/ui/Navbar.tsx";
-import useTheme from "./providers/ThemeProvider/lib/useTheme.ts";
-import {useAppDispatch} from "./providers/StoreProvider/store/store.ts";
+import {useAppDispatch} from "@/app/providers/StoreProvider";
 import {useEffect} from "react";
-import {initAuthThunk} from "../features/auth";
+import {initAuthThunk} from "@/features/auth";
+import Navbar from "@/widgets/Navbar/ui/Navbar.tsx";
+import AppRoutes from "@/app/providers/route/route.tsx";
+import useTheme from "@/app/providers/ThemeProvider/lib/useTheme.ts";
 
 function App() {
     const {theme} = useTheme();
@@ -19,12 +19,12 @@ function App() {
 
     return (
         <div className="app">
-            <Navbar className={'navbar'} />
+            <Navbar className={'navbar'}/>
             <div className={`page-content`}>
-                <AppRoutes />
+                <AppRoutes/>
             </div>
         </div>
-      )
+    )
 }
 
 export default App
