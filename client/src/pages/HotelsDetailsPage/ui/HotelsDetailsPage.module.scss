@@ -1,0 +1,38 @@
+.HotelsDetailsPage {
+
+}
+
+
+.title {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.text {
+  font-size: 20px;
+  max-width: 80%;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 500px;
+  height: 300px;
+  border: 5px solid lightgray;
+  border-radius: 10px;
+
+}
