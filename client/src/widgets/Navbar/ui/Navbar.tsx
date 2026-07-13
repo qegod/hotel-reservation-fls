@@ -27,7 +27,10 @@ const Navbar = memo(({className}: NavbarProps) => {
             <div className={cls.buttons}>
                 <ThemeSwitcher/>
                 {isAuth &&
-                    <Button onClick={logout} theme={ButtonTheme.OUTLINE} className={cls.logout}>Logout</Button>
+                    <>
+                        <Button onClick={logout} theme={ButtonTheme.OUTLINE} className={cls.logout}>Logout</Button>
+                        <h3 className={cls.user}>{isAuth}</h3>
+                    </>
                 }
             </div>
 

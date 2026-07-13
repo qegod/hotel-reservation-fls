@@ -3,11 +3,11 @@ import {IsEmail, IsString, Length, MinLength} from "class-validator";
 
 export class LoginUserDto {
 
-    @IsString({message: "поле должно быть строкой"})
+    @IsString({message: "поле email должно быть строкой"})
     @IsEmail({}, {message: "некорректный email"})
     email: string;
 
-    @IsString({message: "поле должно быть строкой"})
-    @MinLength(3, {message: "длинна не меньше 3"})
+    @IsString({message: "поле password должно быть строкой"})
+    @MinLength(3, {message: "длинна пароля не меньше 3"})
     password: string;
 }

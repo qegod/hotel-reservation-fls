@@ -1,13 +1,22 @@
 import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
 import type {AuthSchema} from "../../types/authSchema.ts";
 import {loginUserThunk} from "../../service/loginThunk/loginThunk.ts";
+import {registerUserThunk} from "../../service/registerThunk/registerThunk.ts";
 
 const initialState: AuthSchema = {
+    username: '',
     password: '',
     email: '',
     error: null,
     isLoading: false,
 }
+
+const resolveError = (erros: string[]): string => {
+    let result = '';
+    erros.map((error: string) => result += `${error} `);
+    return result;
+}
+
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -33,9 +42,34 @@ export const authSlice = createSlice({
             })
             .addCase(loginUserThunk.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload as string  || 'Произошла ошибка';
+                state.error =
+                        Array.isArray(action.payload)
+                        ?
+                        resolveError(action.payload)
+                        :
+                        'Произошла ошибка'
             })
             .addCase(loginUserThunk.fulfilled, (state) => {
+                state.isLoading = false;
+                state.password = '';
+                state.email = '';
+                state.username = '';
+            })
+
+            .addCase(registerUserThunk.pending, (state) => {
+                state.isLoading = true;
+                state.error = null;
+            })
+            .addCase(registerUserThunk.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error =
+                    Array.isArray(action.payload)
+                    ?
+                    resolveError(action.payload)
+                    :
+                    'Произошла ошибка'
+            })
+            .addCase(registerUserThunk.fulfilled, (state) => {
                 state.isLoading = false;
                 state.password = '';
                 state.email = '';

@@ -3,5 +3,5 @@ export interface AuthSchema {
     password: string;
     isLoading: boolean;
     error?: string;
-    username?: string;
+    username: string;
 }
