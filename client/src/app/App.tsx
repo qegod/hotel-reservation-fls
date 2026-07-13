@@ -18,12 +18,12 @@ function App() {
     }, [dispatch])
 
     return (
-        <>
+        <div className="app">
             <Navbar className={'navbar'} />
             <div className={`page-content`}>
                 <AppRoutes />
             </div>
-        </>
+        </div>
       )
 }
 

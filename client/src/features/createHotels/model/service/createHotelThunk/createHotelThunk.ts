@@ -1,5 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {api} from "../../../../../shared/config/api/base.ts";
+import {api} from "../../../../../shared/config/api/baseApi.ts";
+import {errorHandler} from "../../../../../shared/lib/errorHandler/errorHandler.ts";
 
 interface data {
     name: string;
@@ -26,27 +27,9 @@ export const createHotelThunk = createAsyncThunk(
 
             return await api.post('/hotels', formData);
         } catch (error) {
-            console.error('Login error:', error);
+            return rejectWithValue(errorHandler(error));
 
-            // ✅ Извлекаем сообщение об ошибке из ответа сервера
-            let errorMessage = 'Произошла ошибка при входе';
-
-            if (error.response) {
-                // Ошибка от сервера
-                errorMessage = error.response.data?.message ||
-                    error.response.data?.error ||
-                    error.response.statusText ||
-                    errorMessage;
-            } else if (error.request) {
-                // Ошибка сети
-                errorMessage = 'Нет соединения с сервером';
-            } else if (error.message) {
-                errorMessage = error.message;
-            }
-
-            // ✅ Возвращаем строку с ошибкой
-            return rejectWithValue(errorMessage);            }
-
+        }
     }
 )
 

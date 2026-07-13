@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOCAL_STORAGE_TOKEN } from "./consts";
+export const LOCAL_STORAGE_TOKEN = 'token'
 
 export const api = axios.create({
     baseURL: "http://localhost:7000/api",

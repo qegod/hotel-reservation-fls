@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {userActions} from "../../../../../entities/user";
-import {api} from "../../../../../shared/config/api/base.ts";
+import {api} from "../../../../../shared/config/api/baseApi.ts";
 
 export const initAuthThunk = createAsyncThunk('user/init',
     async (_none, {dispatch}) => {

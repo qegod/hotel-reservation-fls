@@ -7,7 +7,7 @@ import {getUserName, userActions} from "../../../entities/user";
 import Button, {ButtonTheme} from "../../../shared/ui/Button/Button.tsx";
 import {memo, useCallback} from "react";
 import {useAppDispatch} from "../../../app/providers/StoreProvider/store/store.ts";
-import {LOCAL_STORAGE_TOKEN} from "../../../shared/config/api/consts.ts";
+import {LOCAL_STORAGE_TOKEN} from "../../../shared/config/api/baseApi.ts";
 
 interface NavbarProps {
     className?: string;
@@ -29,7 +29,7 @@ const Navbar = memo(({className}: NavbarProps) => {
                 {isAuth &&
                     <>
                         <Button onClick={logout} theme={ButtonTheme.OUTLINE} className={cls.logout}>Logout</Button>
-                        <h3 className={cls.user}>{isAuth}</h3>
+                        <h3 className={cls.user}>user: {isAuth}</h3>
                     </>
                 }
             </div>
