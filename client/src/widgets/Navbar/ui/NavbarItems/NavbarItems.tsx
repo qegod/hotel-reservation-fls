@@ -1,23 +1,27 @@
 import {memo} from "react";
 import AppLink from "../../../../shared/ui/AppLink/AppLink.tsx";
 
-const privateRoutes = { path: "/", name: 'Main' } // приватные маршруты
-const publicRoutes = { path: "/auth", name: 'Auth' } // публичные маршруты
+const privateRoutes = {
+    Main: '/',
+    Hotels: '/hotels',
+    CreateHotel: '/hotels-create',
+
+} // приватные маршруты
 
 interface INavbarItems {
     isAuth: boolean | string | null;
 }
 
 
-
 export const NavbarItems = memo(({ isAuth }: INavbarItems) => {
 
 
-    const items = isAuth ? [privateRoutes, publicRoutes] : [publicRoutes]
+   if(!isAuth) return null;
+
 
     return (
         <>
-            {items.map(({path, name}) => (
+            {Object.entries(privateRoutes).map(([name, path]) => (
                 <AppLink key={path} to={path}>{name}</AppLink>
             ))}
         </>

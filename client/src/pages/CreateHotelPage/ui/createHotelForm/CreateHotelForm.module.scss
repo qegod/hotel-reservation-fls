@@ -1,0 +1,26 @@
+.CreateHotelForm {
+  width: 500px;
+  height: 500px;
+  background: var(--inverted-background-color);
+  margin: 0 auto;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+  gap: 20px
+}
+
+.inputFiles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.textArea {
+  width: 312px;
+  height: 154px;
+}

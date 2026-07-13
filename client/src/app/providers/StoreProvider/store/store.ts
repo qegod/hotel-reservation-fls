@@ -4,11 +4,13 @@ import {authReducer} from "../../../../features/auth/model/slice/authSlice/authS
 import {userReducer} from "../../../../entities/user";
 import {useDispatch} from "react-redux";
 import {hotelReducer} from "../../../../entities/hotel";
+import {createHotelReducer} from "../../../../features/createHotels";
 
 const defaultReducer: ReducersMapObject<StateSchema> = {
     auth: authReducer,
     user: userReducer,
     hotel: hotelReducer,
+    createHotel: createHotelReducer,
 }
 
 

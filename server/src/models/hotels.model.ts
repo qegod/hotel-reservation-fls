@@ -6,13 +6,10 @@ interface CreateHotelAttrs {
     name: string;
     price: number;
     company_id: number;
-    data: HotelData;
-}
-
-interface HotelData {
     title: string;
     description: string;
 }
+
 
 @Table({tableName: "hotels"})
 export class Hotel extends Model<Hotel, CreateHotelAttrs>{
@@ -25,8 +22,11 @@ export class Hotel extends Model<Hotel, CreateHotelAttrs>{
     @Column({type: DataType.INTEGER, allowNull: false})
     price: number;
 
-    @Column({type: DataType.JSONB, allowNull: false, defaultValue: {}})
-    data: HotelData;
+    @Column({type: DataType.STRING, allowNull: false})
+    title: string;
+
+    @Column({type: DataType.STRING, allowNull: false})
+    description: string;
 
     @ForeignKey(() => Company)
     @Column({type: DataType.INTEGER, allowNull: false})

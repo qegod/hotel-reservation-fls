@@ -3,7 +3,6 @@
 
 :root {
   --navbar-height: 40px;
-  --navbar-margin: 10px;
 }
 body {
   background-color: var(--background-color);
@@ -12,8 +11,10 @@ body {
 
 .app {
   min-height: 100vh;
-  padding: 10px;
+}
 
+.navbar {
+  margin-top: 10px;
 }
 
 .page-content {

@@ -6,7 +6,7 @@ import Button from "../../../../shared/ui/Button/Button.tsx";
 import {getAuthData} from "../../model/selectors/getAuthData/getAuthData.ts";
 import {useSelector} from "react-redux";
 import {authActions} from "../../model/slice/authSlice/authSlice.ts";
-import {useAppDispatch} from "../../../../app/providers/Redux/store/store.ts";
+import {useAppDispatch} from "../../../../app/providers/StoreProvider/store/store.ts";
 import {loginUserThunk} from "../../model/service/loginThunk/loginThunk.ts";
 import {useNavigate} from "react-router";
 import Loader from "../../../../shared/ui/Loader/Loader.tsx";
@@ -55,7 +55,7 @@ const AuthForm = memo((props: AuthFormProps) => {
         }
 
 
-    }, [dispatch, email, password])
+    }, [dispatch, email, password, username, isLogin, navigate])
 
     if (isLoading) {
         return (

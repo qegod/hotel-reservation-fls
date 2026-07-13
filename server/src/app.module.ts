@@ -10,9 +10,14 @@ import {RolesModule} from "./modules/roles/rolse.module";
 import {AuthModule} from "./modules/auth/auth.module";
 import {HotelImageModule} from "./modules/hotel-image/hotel-image.module";
 import {HotelImage} from "./models/hotel-image.model";
+import {ServeStaticModule} from "@nestjs/serve-static";
+
 
 @Module({
     imports: [
+        ServeStaticModule.forRoot({
+            rootPath: path.resolve(__dirname, 'static'),
+        }),
         ConfigModule.forRoot({
         isGlobal: true,
         envFilePath: path.resolve(__dirname,'..', ".env"),

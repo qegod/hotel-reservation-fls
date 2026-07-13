@@ -1,0 +1,29 @@
+.CreateHotelPage {
+  width: 500px;
+  height: 500px;
+  background: var(--inverted-background-color);
+  margin: 20px auto;
+
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  gap: 30px
+}
+
+.inputFiles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+

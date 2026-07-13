@@ -6,10 +6,14 @@ import {useSelector} from "react-redux";
 import {getUserName, userActions} from "../../../entities/user";
 import Button, {ButtonTheme} from "../../../shared/ui/Button/Button.tsx";
 import {memo, useCallback} from "react";
-import {useAppDispatch} from "../../../app/providers/Redux/store/store.ts";
+import {useAppDispatch} from "../../../app/providers/StoreProvider/store/store.ts";
 import {LOCAL_STORAGE_TOKEN} from "../../../shared/config/api/consts.ts";
 
-const Navbar = memo(() => {
+interface NavbarProps {
+    className?: string;
+}
+
+const Navbar = memo(({className}: NavbarProps) => {
     const isAuth = useSelector(getUserName)
     const dispatch = useAppDispatch();
 
@@ -19,7 +23,7 @@ const Navbar = memo(() => {
     }, [dispatch])
 
     return (
-        <div className={classNames(cls.Navbar)}>
+        <div className={classNames(cls.Navbar, [className])}>
             <div className={cls.buttons}>
                 <ThemeSwitcher/>
                 {isAuth &&

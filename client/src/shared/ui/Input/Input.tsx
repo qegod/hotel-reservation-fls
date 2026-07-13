@@ -6,7 +6,7 @@ type InputType = React.InputHTMLAttributes<HTMLInputElement>
 interface InputProps extends Omit<InputType, `onChange`>  {
     className?: string
     onChange?: (value: string) => void
-    value?: string
+    value?: string | number
 }
 
 const Input = (props: InputProps) => {

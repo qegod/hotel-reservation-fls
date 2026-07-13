@@ -1,8 +1,8 @@
 import './style/index.scss'
-import AppRoutes from "./route/route.tsx";
+import AppRoutes from "./providers/route/route.tsx";
 import Navbar from "../widgets/Navbar/ui/Navbar.tsx";
 import useTheme from "./providers/ThemeProvider/lib/useTheme.ts";
-import {useAppDispatch} from "./providers/Redux/store/store.ts";
+import {useAppDispatch} from "./providers/StoreProvider/store/store.ts";
 import {useEffect} from "react";
 import {initAuthThunk} from "../features/auth";
 
@@ -19,7 +19,7 @@ function App() {
 
     return (
         <>
-            <Navbar />
+            <Navbar className={'navbar'} />
             <div className={`page-content`}>
                 <AppRoutes />
             </div>

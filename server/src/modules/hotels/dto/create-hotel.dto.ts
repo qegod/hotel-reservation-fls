@@ -1,18 +1,4 @@
-import {IsArray, IsNumber, IsString, Length, ValidateNested} from "class-validator";
-import {Type} from "class-transformer";
-
-export class HotelDtoData {
-    @IsString()
-    title: string;
-
-    @IsString()
-    description: string;
-
-    @IsArray()
-    @IsString({ each: true })
-    images: string[];
-}
-
+import {IsNumber, IsString, Length} from "class-validator";
 
 export class CreateHotelDto {
     @IsString()
@@ -25,8 +11,10 @@ export class CreateHotelDto {
     @IsNumber()
     company_id: number;
 
-    @ValidateNested()
-    @Type(() => HotelDtoData)
-    data: HotelDtoData;
+    @IsString()
+    title: string;
+
+    @IsString()
+    description: string;
 }
 

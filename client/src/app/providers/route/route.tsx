@@ -1,26 +1,29 @@
 import {Route, Routes} from "react-router";
-import {AllRoutes} from "../../shared/config/routes/AppRoutes.tsx";
+import {AllRoutes} from "../../../shared/config/routes/AppRoutes.tsx";
 import ProtectedRoute from "./ui/protectedRoute.tsx";
-import {memo} from "react";
+import {memo, Suspense} from "react";
 import {useSelector} from "react-redux";
-import {getUserName} from "../../entities/user";
+import {getUserName} from "../../../entities/user";
+import Loader from "../../../shared/ui/Loader/Loader.tsx";
 
 const AppRoutes = memo(() => {
-    const auth = useSelector(getUserName)
+    const isAuth = useSelector(getUserName)
 
 
 
     return (
-        <Routes>
-            {Object.entries(AllRoutes.public).map(([key, value]) => (
-                <Route key={key} path={key} element={value} />
-            ))}
-            <Route element={<ProtectedRoute isAuth={auth} />}>
-                {Object.entries(AllRoutes.private).map(([key, value]) => (
-                    <Route key={key} path={key} element={value} />
-                ))}
-            </Route>
-        </Routes>
+        <Suspense fallback={<Loader/>}>
+            <Routes>
+                {Object.entries(AllRoutes).map(([path, obj]) =>
+                    <Route element={
+                        <ProtectedRoute isAuth={Boolean(isAuth) === obj.isPrivate}>
+                            {obj.element}
+                        </ProtectedRoute>
+                    } path={path}></Route>
+                )}
+            </Routes>
+        </Suspense>
+
     );
 });
 

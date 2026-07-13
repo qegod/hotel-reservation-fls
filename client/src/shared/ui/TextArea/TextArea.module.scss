@@ -1,0 +1,16 @@
+.TextArea {
+  padding: 10px;
+  resize: none;
+  border: 2px solid #fff;
+  border-radius: 4px;
+
+}
+textarea::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  cursor: pointer;
+}
+textarea::-webkit-scrollbar-thumb {
+  background: #474747;
+  border-radius: 5px;
+}

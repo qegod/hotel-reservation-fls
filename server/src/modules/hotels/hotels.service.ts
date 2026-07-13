@@ -13,20 +13,20 @@ export class HotelsService {
                 private hotelImageService: HotelImageService
                 ) {}
 
-    async create(dto: CreateHotelDto) {
-        const company = await this.companiesService.findById(dto.company_id);
+    async create(dto: CreateHotelDto, images) {
+        const company = await this.companiesService.findById(Number(dto.company_id));
 
 
         if(!company) {
             throw new NotFoundException("Компания не найдена");
         }
 
-        const hotel = await this.hotelProvider.create(dto)
+        const hotel = await this.hotelProvider.create({...dto, price: Number(dto.price)});
 
-        await Promise.all(dto.data.images.map(image =>
+        await Promise.all(images.map(image =>
             this.hotelImageService.addImage({
                 image: image,
-                hotel_id: hotel.id
+                hotel_id: Number(hotel.id)
             })
         ))
 
@@ -50,5 +50,9 @@ export class HotelsService {
             items: rows,
             totalPages: Math.ceil(count / limit),
         };
+    }
+
+    async deleteAll() {
+        await this.hotelProvider.destroy({truncate: true});
     }
 }

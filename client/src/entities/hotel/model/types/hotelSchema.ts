@@ -11,12 +11,16 @@ export interface Hotel {
     id: number
     name: string
     price: number
-    data: {
-        description: string;
-        title: string;
-        image: string;
-    }
+    description: string;
+    title: string;
     company_id: number
+    images?: imagesHotel[]
+}
+
+interface imagesHotel {
+    filename: string;
+    id: number
+    hotel_id: number
 }
 
 export class HotelSchema {

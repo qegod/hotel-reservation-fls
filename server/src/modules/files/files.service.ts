@@ -9,9 +9,12 @@ import {fileTypeFromBuffer} from 'file-type';
 export class FilesService {
 
     async createFile(image): Promise<string> {
+        console.log(image)
+        console.log(image.buffer);
         const fileType = await fileTypeFromBuffer(image.buffer);
         const fileName = `${uuidv4()}.${fileType?.ext}`
-        const filePath = path.resolve(__dirname, '..', 'static')
+        const filePath = path.resolve(__dirname, '..', '..', 'static')
+        console.log(filePath)
 
         if (!fileType) {
             throw new BadRequestException("Не удалось определить тип файла");

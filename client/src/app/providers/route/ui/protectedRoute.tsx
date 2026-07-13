@@ -1,17 +1,18 @@
-import {Navigate, Outlet} from "react-router";
+import {Navigate} from "react-router";
 import {memo} from "react";
 
 interface ProtectedRouteProps {
-    isAuth: boolean | string | null;
+    isAuth: boolean;
+    children: React.ReactNode;
 }
 
-const ProtectedRoute = memo(({isAuth}: ProtectedRouteProps) => {
+const ProtectedRoute = memo(({isAuth, children}: ProtectedRouteProps) => {
 
     if(!isAuth) {
         return <Navigate to="/auth" replace/>
     }
 
-    return <Outlet/>
+    return children
 });
 
 export default ProtectedRoute;
